@@ -1,17 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import RollState from './hooks/context/roll/RollState';
+import TurnState from './hooks/context/turn/TurnState';
+import MenuState from './hooks/context/item_menu/menuState';
 import App from './App';
-import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <MenuState>
+      <TurnState>
+        <RollState>
+          <App />
+        </RollState>
+      </TurnState>
+    </MenuState>
   </React.StrictMode>,
   document.getElementById('root')
 );
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
