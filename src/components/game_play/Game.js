@@ -3,12 +3,13 @@ import React, { useContext } from 'react';
 import RollContext from '../../hooks/context/roll/rollContext';
 import TurnContext from '../../hooks/context/turn/turnContext';
 import MenuContext from '../../hooks/context/item_menu/menuContext';
+import MainCharacterContext from '../../hooks/context/main_character/mainCharacterContext';
 
 import Roll from '../../components/roll/Roll';
 import ItemMenu from '../../components/items_menu/ItemMenu';
 import MainChar from '../../components/main_character/MainChar';
 
-const Game = ({ health, setHealth }) => {
+const Game = () => {
   const rollContext = useContext(RollContext);
   const { setRoll, roll } = rollContext;
 
@@ -17,6 +18,9 @@ const Game = ({ health, setHealth }) => {
 
   const menuContext = useContext(MenuContext);
   const { menu } = menuContext;
+
+  const mainCharacterContext = useContext(MainCharacterContext);
+  const { health, setHealth } = mainCharacterContext;
 
   return (
     <main>
@@ -44,7 +48,7 @@ const Game = ({ health, setHealth }) => {
         <Roll roll={roll} />
         <button
           onClick={() => {
-            setHealth(health - 10);
+            setHealth();
           }}>
           -hp
         </button>

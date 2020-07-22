@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 
 import RollContext from '../../hooks/context/roll/rollContext';
 import TurnContext from '../../hooks/context/turn/turnContext';
+import MainCharacterContext from '../../hooks/context/main_character/mainCharacterContext';
 
 import mainCharacter from '../../images/main_dead.png';
 
@@ -13,11 +14,13 @@ import {
   navStyle,
 } from './styles/game_over_styles';
 
-const GameOver = ({ setHealth, setStartMenu }) => {
+const GameOver = ({ setStartMenu }) => {
   const rollContext = useContext(RollContext);
   const { resetRoll } = rollContext;
   const turnContext = useContext(TurnContext);
   const { setTurn } = turnContext;
+  const mainCharacterContext = useContext(MainCharacterContext);
+  const { resetHealth } = mainCharacterContext;
   return (
     <main style={mainStyle}>
       <section style={sectionStyle}>
@@ -30,14 +33,14 @@ const GameOver = ({ setHealth, setStartMenu }) => {
           onClick={() => {
             resetRoll();
             setTurn();
-            setHealth(100);
+            resetHealth();
           }}>
           Try Again
         </button>
         <button
           style={buttonStyle}
           onClick={() => {
-            setHealth(100);
+            resetHealth();
             setStartMenu(true);
           }}>
           return home

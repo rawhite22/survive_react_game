@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
 import Welcome from './components/welcome/Welcome';
 import Game from './components/game_play/Game';
 import GameOver from './components/game_over/GameOver';
 
+import MainCharacterContext from './hooks/context/main_character/mainCharacterContext';
+
 import './App.css';
 
 function App() {
-  const [health, setHealth] = useState(100);
+  const mainCharacterContext = useContext(MainCharacterContext);
+  const { health } = mainCharacterContext;
 
   const [startMenu, setStartMenu] = useState(true);
 
@@ -15,16 +18,10 @@ function App() {
     return <Welcome setStartMenu={setStartMenu} />;
   }
   if (health > 0 && !startMenu) {
-    return <Game health={health} setHealth={setHealth} />;
+    return <Game />;
   }
   if (health <= 0) {
-    return (
-      <GameOver
-        health={health}
-        setHealth={setHealth}
-        setStartMenu={setStartMenu}
-      />
-    );
+    return <GameOver setStartMenu={setStartMenu} />;
   }
 }
 
