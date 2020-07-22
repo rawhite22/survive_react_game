@@ -7,16 +7,15 @@ import MenuContext from './hooks/context/item_menu/menuContext';
 import Roll from './components/roll/Roll';
 import ItemMenu from './components/items_menu/ItemMenu';
 import MainChar from './components/main_character/MainChar';
-
-import mainCharacter from './images/main_dead.png';
+import GameOver from './components/game_over/GameOver';
 
 import './App.css';
 
 function App() {
   const rollContext = useContext(RollContext);
-  const { setRoll, roll, resetRoll } = rollContext;
+  const { setRoll, roll } = rollContext;
   const turnContext = useContext(TurnContext);
-  const { turn, increaseTurn, setTurn } = turnContext;
+  const { turn, increaseTurn } = turnContext;
   const menuContext = useContext(MenuContext);
   const { menu } = menuContext;
 
@@ -73,39 +72,11 @@ function App() {
   }
   if (health <= 0) {
     return (
-      <div
-        style={{
-          height: '100vh',
-          width: '100vw',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
-        <p>GameOver</p>
-        <div>
-          <img
-            style={{ height: '30vh', width: 'auto' }}
-            src={mainCharacter}
-            alt='main-character'
-          />
-        </div>
-        <button
-          onClick={() => {
-            resetRoll();
-            setTurn();
-            setHealth(100);
-          }}>
-          Try Again
-        </button>
-        <button
-          onClick={() => {
-            setStartMenu(true);
-            setHealth(100);
-          }}>
-          return home
-        </button>
-      </div>
+      <GameOver
+        health={health}
+        setHealth={setHealth}
+        setStartMenu={setStartMenu}
+      />
     );
   }
 }
