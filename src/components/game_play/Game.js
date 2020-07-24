@@ -2,11 +2,11 @@ import React, { useContext } from 'react';
 
 import RollContext from '../../hooks/context/roll/rollContext';
 import TurnContext from '../../hooks/context/turn/turnContext';
-import MenuContext from '../../hooks/context/item_menu/menuContext';
+
 import MainCharacterContext from '../../hooks/context/main_character/mainCharacterContext';
 
 import Roll from '../../components/roll/Roll';
-import ItemMenu from '../../components/items_menu/ItemMenu';
+
 import MainChar from '../../components/main_character/MainChar';
 
 const Game = () => {
@@ -15,9 +15,6 @@ const Game = () => {
 
   const turnContext = useContext(TurnContext);
   const { turn, increaseTurn } = turnContext;
-
-  const menuContext = useContext(MenuContext);
-  const { menu } = menuContext;
 
   const mainCharacterContext = useContext(MainCharacterContext);
   const { health, setHealth } = mainCharacterContext;
@@ -52,7 +49,6 @@ const Game = () => {
           }}>
           -hp
         </button>
-        <ItemMenu menu={menu} />
       </div>
     </main>
   );
