@@ -31,10 +31,18 @@ const MainChar = ({ health }) => {
 
   useEffect(() => {
     if (health <= 50) {
-      gsap.to(hbText.current, { color: 'black' });
+      gsap.to(hbText.current, {
+        color: 'black',
+        textShadow:
+          '-1px 1px 0 #fff, 1px 1px 0 #fff, 1px -1px 0 #fff, -1px -1px 0 #fff ',
+      });
     }
     if (health <= 20) {
-      gsap.to(hbText.current, { color: 'white' });
+      gsap.to(hbText.current, {
+        color: 'white',
+        textShadow:
+          '-1px 1px 0 #000, 1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000',
+      });
     }
   }, [health]);
 

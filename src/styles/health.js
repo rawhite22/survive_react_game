@@ -24,7 +24,8 @@ export const healthBar = (x) => {
     justifyContent: 'center',
     alignItems: 'center',
     color: 'white',
-
+    textShadow:
+      '-1px 1px 0 #000, 1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000',
     fontSize: '2rem',
     ...(x <= 10 && { fontSize: '1.5rem' }),
   };

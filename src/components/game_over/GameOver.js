@@ -14,7 +14,7 @@ import {
   navStyle,
 } from './styles/game_over_styles';
 
-const GameOver = ({ setStartMenu }) => {
+const GameOver = ({ openMenu }) => {
   const rollContext = useContext(RollContext);
   const { resetRoll } = rollContext;
   const turnContext = useContext(TurnContext);
@@ -41,7 +41,7 @@ const GameOver = ({ setStartMenu }) => {
           style={buttonStyle}
           onClick={() => {
             resetHealth();
-            setStartMenu(true);
+            openMenu();
           }}>
           return home
         </button>

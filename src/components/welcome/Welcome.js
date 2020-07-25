@@ -1,5 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useCurrentWidth } from 'react-socks';
+
+import MenusContext from '../../hooks/context/menus/menuContext';
+
+import Help from './components/Help';
 
 import { mainStyle, buttonStyle, h1Style } from './styles/welcome_styles';
 
@@ -8,7 +12,10 @@ import {
   buttonStyleFunc,
 } from '../../functions/style_functions';
 
-const Welcome = ({ setStartMenu }) => {
+const Welcome = ({ closeMenu }) => {
+  const menusContext = useContext(MenusContext);
+  const { helpMenu, openHelp, closeHelp } = menusContext;
+
   return (
     <main
       style={{
@@ -23,18 +30,19 @@ const Welcome = ({ setStartMenu }) => {
             ...buttonStyle,
           }}
           onClick={() => {
-            setStartMenu(false);
+            closeMenu();
           }}>
           Play
         </button>
 
         <i
           onClick={() => {
-            console.log('help clicked');
+            openHelp();
           }}
           class='fad fa-question-circle fa-2x'
-          style={{ color: 'blue' }}></i>
+          style={{ color: 'blue', cursor: 'pointer' }}></i>
       </nav>
+      {helpMenu ? <Help closeHelp={closeHelp} /> : null}
     </main>
   );
 };
