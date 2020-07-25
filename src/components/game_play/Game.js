@@ -27,7 +27,7 @@ const Game = () => {
             backgroundColor: 'red',
             height: '100vh',
             width: '100vw',
-            opacity: '0.1',
+            opacity: '0.2',
             zIndex: '-1',
             position: 'absolute',
           }}></div>
