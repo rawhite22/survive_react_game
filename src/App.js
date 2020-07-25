@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 
 import Welcome from './components/welcome/Welcome';
 import Game from './components/game_play/Game';

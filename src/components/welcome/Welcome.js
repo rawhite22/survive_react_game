@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
-import { useCurrentWidth } from 'react-socks';
 
 import MenusContext from '../../hooks/context/menus/menuContext';
 
-import Help from './components/Help';
+import Help from './components/help/Help';
 
 import { mainStyle, buttonStyle, h1Style } from './styles/welcome_styles';
+import { helpButton } from './styles/help_styles';
 
 import {
   flexCenterAll,
@@ -17,33 +17,37 @@ const Welcome = ({ closeMenu }) => {
   const { helpMenu, openHelp, closeHelp } = menusContext;
 
   return (
-    <main
-      style={{
-        ...flexCenterAll('column'),
-        ...mainStyle,
-      }}>
-      <h1 style={h1Style}>Survive!</h1>
-      <nav>
-        <button
-          style={{
-            ...buttonStyleFunc(),
-            ...buttonStyle,
-          }}
-          onClick={() => {
-            closeMenu();
-          }}>
-          Play
-        </button>
+    <div>
+      <main
+        style={{
+          ...flexCenterAll('column'),
+          ...mainStyle,
+        }}>
+        <h1 style={h1Style}>Survive!</h1>
+        <nav>
+          <button
+            style={{
+              ...buttonStyleFunc(),
+              ...buttonStyle,
+            }}
+            onClick={() => {
+              closeMenu();
+            }}>
+            Play
+          </button>
 
-        <i
-          onClick={() => {
-            openHelp();
-          }}
-          class='fad fa-question-circle fa-2x'
-          style={{ color: 'blue', cursor: 'pointer' }}></i>
-      </nav>
+          {helpMenu ? null : (
+            <i
+              onClick={() => {
+                openHelp();
+              }}
+              className='fad fa-question-circle fa-2x'
+              style={helpButton}></i>
+          )}
+        </nav>
+      </main>
       {helpMenu ? <Help closeHelp={closeHelp} /> : null}
-    </main>
+    </div>
   );
 };
 
