@@ -17,7 +17,7 @@ const Help = ({ closeHelp }) => {
         onClick={() => {
           gsap.to(helpRef.current, { opacity: 0, onComplete: closeHelp });
         }}>
-        close help
+        <i className='fas fa-times-circle fa-2x'></i>
       </button>
     </div>
   );

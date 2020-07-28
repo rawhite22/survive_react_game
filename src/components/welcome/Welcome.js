@@ -1,4 +1,5 @@
-import React, { useContext } from 'react';
+import React, { useContext, useRef } from 'react';
+import gsap from 'gsap';
 
 import MenusContext from '../../hooks/context/menus/menuContext';
 
@@ -15,6 +16,8 @@ import {
 const Welcome = ({ closeMenu }) => {
   const menusContext = useContext(MenusContext);
   const { helpMenu, openHelp, closeHelp } = menusContext;
+
+  const helpIcon = useRef(null);
 
   return (
     <div>
@@ -38,8 +41,15 @@ const Welcome = ({ closeMenu }) => {
 
           {helpMenu ? null : (
             <i
+              ref={helpIcon}
               onClick={() => {
                 openHelp();
+              }}
+              onMouseEnter={() => {
+                gsap.to(helpIcon.current, { scale: 1.5 });
+              }}
+              onMouseLeave={() => {
+                gsap.to(helpIcon.current, { scale: 1 });
               }}
               className='fad fa-question-circle fa-2x'
               style={helpButton}></i>

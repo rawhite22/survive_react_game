@@ -1,8 +1,6 @@
 import React, { useContext } from 'react';
 
-import RollContext from '../../hooks/context/roll/rollContext';
-import TurnContext from '../../hooks/context/turn/turnContext';
-
+import GamePlayContext from '../../hooks/context/game_play/gamePlayContext';
 import MainCharacterContext from '../../hooks/context/main_character/mainCharacterContext';
 
 import Roll from '../../components/roll/Roll';
@@ -10,11 +8,15 @@ import Roll from '../../components/roll/Roll';
 import MainChar from '../../components/main_character/MainChar';
 
 const Game = () => {
-  const rollContext = useContext(RollContext);
-  const { setRoll, roll } = rollContext;
-
-  const turnContext = useContext(TurnContext);
-  const { turn, increaseTurn } = turnContext;
+  const gamePlayContext = useContext(GamePlayContext);
+  const {
+    turn,
+    roll,
+    setRoll,
+    increaseTurn,
+    setOption,
+    option,
+  } = gamePlayContext;
 
   const mainCharacterContext = useContext(MainCharacterContext);
   const { health, setHealth } = mainCharacterContext;
@@ -34,15 +36,18 @@ const Game = () => {
       ) : null}
       <div>
         {turn === 0 ? null : <p>{turn}</p>}
+
         <button
           onClick={() => {
             setRoll();
+            setOption();
             increaseTurn();
           }}>
           Roll
         </button>
+
         <MainChar health={health} />
-        <Roll roll={roll} />
+        <Roll roll={roll} option={option} />
         <button
           onClick={() => {
             setHealth();

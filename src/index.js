@@ -3,26 +3,26 @@ import ReactDOM from 'react-dom';
 
 import { BreakpointProvider } from 'react-socks';
 
-import RollState from './hooks/context/roll/RollState';
-import TurnState from './hooks/context/turn/TurnState';
+import GamePlayState from './hooks/context/game_play/GamePlayState';
 import MenusState from './hooks/context/menus/menuState';
 import MainCharacterState from './hooks/context/main_character/MainCharacterState';
+import EnemyState from './hooks/context/enemy/EnemyState';
 
 import App from './App';
 
 ReactDOM.render(
   <React.StrictMode>
-    <TurnState>
-      <RollState>
-        <MainCharacterState>
-          <MenusState>
+    <GamePlayState>
+      <MainCharacterState>
+        <MenusState>
+          <EnemyState>
             <BreakpointProvider>
               <App />
             </BreakpointProvider>
-          </MenusState>
-        </MainCharacterState>
-      </RollState>
-    </TurnState>
+          </EnemyState>
+        </MenusState>
+      </MainCharacterState>
+    </GamePlayState>
   </React.StrictMode>,
   document.getElementById('root')
 );
